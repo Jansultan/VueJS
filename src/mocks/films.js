@@ -55,7 +55,7 @@ export default [{
             'Мэгги Никсон',
             'Фон Льюис'
         ],
-        img: 'https://www.kino-teatr.ru/movie/kadr/132228/821913.jpg',
+        img: 'https://www.film.ru/sites/default/files/styles/thumb_1024x450/public/trailers_frame/1534270182081.jpeg',
         directors: ['Питер Фаррелли']
     }
 ]

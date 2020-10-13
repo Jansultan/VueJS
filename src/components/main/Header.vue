@@ -49,7 +49,7 @@
                     фильмы
                 </router-link>
                 <router-link
-                    :to="{name: 'form-vuelidate'}">
+                    :to="{name: 'vuex-example'}">
                     Vuex / Что такое глобальное хранилище
                 </router-link>
             </div>

@@ -9,6 +9,7 @@ import ProductList from '../components/product/ProductList'
 import TextEditor from '../components/textEditor/TextEditor'
 import ModalPage from '../components/modal/ModalPage'
 import FormVuelidate from '../components/formVuelidate/FormVuelidate'
+import VuexExample from '../components/vuex-example/VuexExample'
 
 
 
@@ -65,6 +66,11 @@ export default new VueRouter({
                     component: FormVuelidate
                 },
                 {
+                    path: '/vuex-example',
+                    name: 'vuex-example',
+                    component: VuexExample
+                },
+                {
                     path: '*/*',
                     redirect: { name: 'lessons' }
                 },
@@ -73,7 +79,7 @@ export default new VueRouter({
         },
         {
             path: '/films',
-            name: 'layout',
+            name: 'layout2',
             component: FilmsLayout,
             children: [{
                     path: '',

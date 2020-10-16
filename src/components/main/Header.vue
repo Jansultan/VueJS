@@ -52,40 +52,67 @@
                     :to="{name: 'vuex-example'}">
                     Vuex / Что такое глобальное хранилище
                 </router-link>
+                <!-- <router-link
+                    :to="{name: 'fetch-axios'}">
+                    fetch и axios
+                </router-link> -->
             </div>
         </div>
         <button
           type="button"
           class="btn btn-outline-light btn-lg"
-          @click="changeUserState"
+          @click="onAuthBtnClick"
         >
-          {{ auth ? 'Выйти' : 'Войти' }}
+          {{ getUser ? 'Выйти' : 'Войти' }}
         </button>
       </div>
     </div>
+    <auth-modal
+      v-if="isAuthModalOpen"
+      @close="isAuthModalOpen = false"></auth-modal>
   </header>
 </template>
 
 <script>
+import AuthModal from '../auth/AuthModal'
+import { mapGetters, mapActions } from 'vuex'
+
+
 export default {
   data() {
     return {
-      auth: false
+      auth: false,
+      isAuthorized: false,
+      isAuthModalOpen: false
     }
+  },
+  components:{
+    AuthModal
+  },
+  computed:{
+    ...mapGetters({
+      getUser: 'user/getUser'
+    })
   },
   created() {
-    this.auth = localStorage.getItem('auth') !== null
+    this.setUser(JSON.parse(localStorage.getItem('user')))
   },
   methods: {
-    changeUserState() {
-      if (this.auth) {
-        localStorage.removeItem('auth')
-        this.$router.push({ name: 'main'})
+    ...mapActions({
+      setUser: 'user/setUser',
+      deleteUser: 'user/deleteUser'
+    }),
+    onAuthBtnClick() {
+      if (this.getUser) {
+        this.$api.auth.logout()
+        localStorage.removeItem('user')
+        this.deleteUser()
+        this.$router.push({ name: 'main' })
       } else {
-        localStorage.setItem('auth', true)
-        this.auth = true
+        this.isAuthModalOpen = true
       }
     }
+
   }
 }
 </script>

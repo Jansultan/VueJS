@@ -10,6 +10,7 @@ import TextEditor from '../components/textEditor/TextEditor'
 import ModalPage from '../components/modal/ModalPage'
 import FormVuelidate from '../components/formVuelidate/FormVuelidate'
 import VuexExample from '../components/vuex-example/VuexExample'
+import FetchAxios from '../components/fetch_axios/FetchAxios'
 
 
 
@@ -71,6 +72,11 @@ export default new VueRouter({
                     component: VuexExample
                 },
                 {
+                    path: 'fetch-axios',
+                    name: 'fetch-axios',
+                    component: FetchAxios
+                },
+                {
                     path: '*/*',
                     redirect: { name: 'lessons' }
                 },
@@ -91,7 +97,7 @@ export default new VueRouter({
                     name: 'filmPage',
                     component: FilmPage,
                     beforeEnter: (to, from, next) => {
-                        if (localStorage.getItem('auth')) {
+                        if (localStorage.getItem('user')) {
                             next()
                         } else {
                             next({ name: 'films' })

@@ -7,6 +7,12 @@ export default {
             const posts = await res.json()
 
             commit('updatePost', posts)
+                // axios('https://jsonplaceholder.typicode.com/posts?_limit=' + val, {
+                //         method: 'GET'
+                //     })
+                //     .then((posts) => {
+                //         commit('updatePost', posts)
+                //     })
         }
     },
     mutations: {

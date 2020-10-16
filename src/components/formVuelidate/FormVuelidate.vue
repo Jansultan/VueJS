@@ -50,6 +50,24 @@
         </p>
       </div>
       <div class="form-group">
+        <label for="tel">Телефон: {{form.tel.length}}</label>
+        <input
+          id="tel"
+          type="tel"
+          class="form-control"
+          v-mask="'+7(###) ###-####'"
+          v-model.trim="form.tel"
+          placeholder="+7(999) 999-9999"
+          :class="$v.form.tel.$error ? 'is-invalid' : ''"
+        />
+        <p
+          v-if="$v.form.tel.$dirty && !$v.form.tel.required"
+          class="invalid-feedback"
+        >
+          Некорректный номер телефон
+        </p>
+      </div>
+      <div class="form-group">
         <label for="password">Пароль:</label>
         <input
           id="password"
@@ -190,6 +208,7 @@ export default {
         agreeWithRules: false,
         agreeWithSendEmail: false,
         gender: "male",
+        tel:''
       },
       name: "",
       countries: [
@@ -230,6 +249,10 @@ export default {
       },
       email: { required, email },
       password: { required },
+      tel: { 
+        required,
+        minLength: minLength(16),
+      },
       agreeWithRules: {
         mustBeTrue(value) {
           return value;
